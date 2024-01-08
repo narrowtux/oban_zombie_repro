@@ -4,6 +4,8 @@ ObanZombieRepro.Worker.new()
 |> IO.inspect(label: "Worker result")
 
 pid = Process.whereis(ObanZombieRepro.Worker.Agent)
-unless is_nil(pid) do
+unless is_nil(pid) or not Process.alive?(pid) do
   IO.puts "Agent is still alive: #{inspect pid}"
+else
+  IO.puts "Agent is not running :)"
 end
